@@ -11,24 +11,30 @@ public class InvoiceApp {
         @SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 
-        // perform invoice calculations until choice isn't equal to "y" or "Y"
+        // perform invoice calculations until choice isn't equal to "n" or "N"
         String choice = "y";
-        while (choice.equalsIgnoreCase("y")) {
+        double discountAmount, total, runningTotal= 0.0, runningDiscount = 0, discountPercent;
+        int numberOfInvoices = 0;
+        while (!choice.equalsIgnoreCase("n")) {
             // get the invoice subtotal from the user
             System.out.print("Enter subtotal:   ");
             double subtotal = sc.nextDouble();
-
+            
+            //Validate input
+            
+            numberOfInvoices++;
             // calculate the discount amount and total
-            double discountPercent;
             if (subtotal >= 200) {
-                discountPercent = .2;
+                discountPercent = .25;
             } else if (subtotal >= 100) {
                 discountPercent = .1;
             } else {
                 discountPercent = 0.0;
             }
-            double discountAmount = subtotal * discountPercent;
-            double total = subtotal - discountAmount;
+            discountAmount = subtotal * discountPercent;
+            total = subtotal - discountAmount;
+            runningTotal += total;
+            runningDiscount += discountAmount;
 
             // display the discount amount and total
             String message = "Discount percent: " + discountPercent + "\n"
@@ -41,5 +47,10 @@ public class InvoiceApp {
             choice = sc.next();
             System.out.println();
         }
+        
+        String finalMessage = "Number of invoices: " + "\t" + numberOfInvoices + "\n"
+                + "Average invoice:  " + "\t" + runningTotal/numberOfInvoices + "\n"
+                + "Average Discount:    " + "\t" + runningDiscount/numberOfInvoices + "\n";            
+        System.out.println(finalMessage);
     }
 }
