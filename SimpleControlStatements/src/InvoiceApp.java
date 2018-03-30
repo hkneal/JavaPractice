@@ -24,34 +24,27 @@ public class InvoiceApp {
                         discountPercent = 0.0;
                     } else if (subtotal >= 100 && subtotal < 250) {
                         discountPercent = .1;
-                    //} else if (subtotal >= 250) {
-                    //    discountPercent = .2;
-                    } else if (subtotal >= 250 && subtotal < 500) {
+                    } else if ((subtotal >= 250) && (subtotal < 500)) {
                         discountPercent = .25;
-                    } else if (subtotal > 500) {
-                        discountPercent = .3;
+                    } else if (subtotal >= 500) {
+                    		discountPercent = .3;
                     }
                     break;
                 case "c":
                 case "C":
-                    discountPercent = .20;
-//                    if (subtotal < 250) {
-//                        discountPercent = .2;
-//                    } else if (subtotal >= 250) {
-//                        discountPercent = .3;
-//                    }
-                    break;
+                   discountPercent = .2;
+                    break; 
                 case "t":
                 case "T":
-                    if (subtotal < 500) {
-                        discountPercent = .4;
-                    } else {
-                        discountPercent = .5;
-                    }
+                		if (subtotal >= 500) {
+                			discountPercent = .5;
+                		} else {
+                			discountPercent = .4;
+                		}
                     break;
-//                default:
-//                    discountPercent = .1;
-//                    break;
+                default:
+                    discountPercent = 0;
+                    break;
             }
 
             // calculate the discount amount and round to 2 decimals

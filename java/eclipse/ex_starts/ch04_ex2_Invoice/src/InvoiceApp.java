@@ -10,7 +10,7 @@ public class InvoiceApp {
 
         while (!choice.equalsIgnoreCase("n")) {
             // get the input from the user
-            System.out.print("Enter customer type (r/c): ");
+            System.out.print("Enter customer type (r/c/t): ");
             String customerType = sc.next();
             System.out.print("Enter subtotal:   ");
             double subtotal = sc.nextDouble();
@@ -24,20 +24,26 @@ public class InvoiceApp {
                         discountPercent = 0.0;
                     } else if (subtotal >= 100 && subtotal < 250) {
                         discountPercent = .1;
-                    } else if (subtotal >= 250) {
-                        discountPercent = .2;
+                    } else if ((subtotal >= 250) && (subtotal < 500)) {
+                        discountPercent = .25;
+                    } else if (subtotal >= 500) {
+                    		discountPercent = .3;
                     }
                     break;
                 case "c":
                 case "C":
-                    if (subtotal < 250) {
-                        discountPercent = .2;
-                    } else if (subtotal >= 250) {
-                        discountPercent = .3;
-                    }
+                   discountPercent = .2;
+                    break; 
+                case "t":
+                case "T":
+                		if (subtotal >= 500) {
+                			discountPercent = .5;
+                		} else {
+                			discountPercent = .4;
+                		}
                     break;
                 default:
-                    discountPercent = .1;
+                    discountPercent = 0;
                     break;
             }
 
