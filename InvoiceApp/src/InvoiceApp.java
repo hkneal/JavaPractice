@@ -8,20 +8,22 @@ public class InvoiceApp {
         Scanner sc = new Scanner(System.in);
         String choice = "y";
 
+        double subtotal =0;
         while (!choice.equalsIgnoreCase("n")) {
             // get the input from the user
             System.out.print("Enter customer type (r/c): ");
             String customerType = sc.next();
             System.out.print("Enter subtotal:   ");
-            double subtotal = 0.0;
-            if (sc.hasNextDouble()) {
-                subtotal = sc.nextDouble();
-                sc.nextLine();
-            } else {
-                System.out.println("Error! Invalid number. Try again. \n");
-                sc.nextLine();
-                continue;
+            if(sc.hasNextDouble()) {
+            		 subtotal = sc.nextDouble();
             }
+            else {
+            		sc.nextLine();  //pulls the none double entry
+            		System.out.println("Please only enter in the number value!");
+            		sc.nextLine();  //makes sure nothing else is entered
+            		continue;  //finish this pass and restart.
+            }
+            
 
             // get the discount percent
             double discountPercent = 0.0;
